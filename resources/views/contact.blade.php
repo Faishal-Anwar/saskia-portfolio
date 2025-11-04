@@ -24,17 +24,24 @@
                 <i data-lucide="copy" class="w-5 h-5 text-secondary"></i>
             </button>
         </div>
-        <a href="#" target="_blank" data-aos="fade-up" data-aos-delay="200" class="card p-6 rounded-2xl flex justify-between items-center hover:-translate-y-1.5 transition-transform duration-300">
+        <a href="{{ $siteSettings['linkedin_url'] ?? '#' }}" target="_blank" data-aos="fade-up" data-aos-delay="200" class="card p-6 rounded-2xl flex justify-between items-center hover:-translate-y-1.5 transition-transform duration-300">
             <div class="flex items-center gap-4">
                 <div class="bg-slate-700 dark:bg-slate-700 p-3 rounded-lg"><i data-lucide="linkedin" class="w-6 h-6 text-purple-400 dark:text-purple-400"></i></div>
                 <span class="font-semibold text-base text-primary">LinkedIn</span>
             </div>
             <i data-lucide="arrow-up-right" class="w-6 h-6 text-secondary"></i>
         </a>
-        <a href="#" target="_blank" data-aos="fade-up" data-aos-delay="300" class="card p-6 rounded-2xl flex justify-between items-center hover:-translate-y-1.5 transition-transform duration-300">
+        <a href="{{ $siteSettings['instagram_url'] ?? '#' }}" target="_blank" data-aos="fade-up" data-aos-delay="300" class="card p-6 rounded-2xl flex justify-between items-center hover:-translate-y-1.5 transition-transform duration-300">
             <div class="flex items-center gap-4">
                 <div class="bg-slate-700 dark:bg-slate-700 p-3 rounded-lg"><i data-lucide="instagram" class="w-6 h-6 text-green-400 dark:text-green-400"></i></div>
                 <span class="font-semibold text-base text-primary">Instagram</span>
+            </div>
+            <i data-lucide="arrow-up-right" class="w-6 h-6 text-secondary"></i>
+        </a>
+        <a href="{{ $siteSettings['facebook_url'] ?? '#' }}" target="_blank" data-aos="fade-up" data-aos-delay="400" class="card p-6 rounded-2xl flex justify-between items-center hover:-translate-y-1.5 transition-transform duration-300">
+            <div class="flex items-center gap-4">
+                <div class="bg-slate-700 dark:bg-slate-700 p-3 rounded-lg"><i data-lucide="facebook" class="w-6 h-6 text-blue-400 dark:text-blue-400"></i></div>
+                <span class="font-semibold text-base text-primary">Facebook</span>
             </div>
             <i data-lucide="arrow-up-right" class="w-6 h-6 text-secondary"></i>
         </a>

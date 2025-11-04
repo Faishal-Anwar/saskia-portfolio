@@ -31,7 +31,8 @@ class PageController extends Controller
 
     public function contact()
     {
-        return view('contact');
+        $siteSettings = Setting::pluck('value', 'key')->all();
+        return view('contact', compact('siteSettings'));
     }
 
     public function storeContactForm(Request $request)
