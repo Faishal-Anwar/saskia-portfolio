@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AboutController;
-use App\Http\Controllers\StackController;
+use App\Http\Controllers\SkillController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\SettingController;
 
@@ -18,14 +18,14 @@ Route::get('/download-cv', [SettingController::class, 'downloadCv'])->name('cv.d
 
 // Public Resource Routes
 Route::resource('about', AboutController::class)->only(['index', 'show']);
-Route::resource('stack', StackController::class)->only(['index', 'show']);
-Route::resource('projects', ProjectController::class)->only(['index', 'show']);
+Route::resource('skills', SkillController::class)->only(['index', 'show']);
+Route::resource('experience', ExperienceController::class)->only(['index', 'show']);
 
 // Authenticated (Admin) Resource Routes
 Route::middleware('auth')->group(function () {
     Route::resource('about', AboutController::class)->except(['index', 'show']);
-    Route::resource('stack', StackController::class)->except(['index', 'show']);
-    Route::resource('projects', ProjectController::class)->except(['index', 'show']);
+    Route::resource('skills', SkillController::class)->except(['index', 'show']);
+    Route::resource('experience', ExperienceController::class)->except(['index', 'show']);
 
     // Settings Routes
     Route::get('/settings', [SettingController::class, 'edit'])->name('settings.edit');

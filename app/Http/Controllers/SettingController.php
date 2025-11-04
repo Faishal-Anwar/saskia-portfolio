@@ -21,13 +21,13 @@ class SettingController extends Controller
             'contact_email' => 'nullable|email',
             'linkedin_url' => 'nullable|url',
             'instagram_url' => 'nullable|url',
-            'github_url' => 'nullable|url',
+            'facebook_url' => 'nullable|url',
             'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'cv_file' => 'nullable|file|mimes:pdf|max:2048',
         ]);
 
         // Handle text-based settings
-        $textSettings = ['contact_email', 'linkedin_url', 'instagram_url', 'github_url'];
+        $textSettings = ['contact_email', 'linkedin_url', 'instagram_url', 'facebook_url'];
         foreach ($textSettings as $key) {
             if ($request->has($key)) {
                 Setting::updateOrCreate(['key' => $key], ['value' => $request->input($key)]);
@@ -103,6 +103,6 @@ class SettingController extends Controller
 
         return response()->streamDownload(function () use ($cvUrl) {
             echo file_get_contents($cvUrl);
-        }, 'CV-Faishal-Anwar.pdf');
+        }, 'CV-Saskia-Mariska.pdf');
     }
 }

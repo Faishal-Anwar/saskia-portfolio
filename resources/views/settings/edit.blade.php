@@ -67,8 +67,8 @@
                            class="form-input w-full px-4 py-2.5 rounded-lg text-base focus:ring-2 focus:border-transparent transition">
                 </div>
                 <div>
-                    <label for="github_url" class="block text-sm font-medium text-secondary">GitHub URL</label>
-                    <input id="github_url" type="url" name="github_url" value="{{ old('github_url', $settings['github_url'] ?? '') }}" 
+                    <label for="facebook_url" class="block text-sm font-medium text-secondary">Facebook URL</label>
+                    <input id="facebook_url" type="url" name="facebook_url" value="{{ old('facebook_url', $settings['facebook_url'] ?? '') }}" 
                            class="form-input w-full px-4 py-2.5 rounded-lg text-base focus:ring-2 focus:border-transparent transition">
                 </div>
             </div>

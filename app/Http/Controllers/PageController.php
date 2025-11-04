@@ -3,28 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Project;
+use App\Models\Experience;
 use App\Models\About;
-use App\Models\Stack;
+use App\Models\Skill;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactFormMail;
+use App\Models\Setting;
 
 class PageController extends Controller
 {
     public function home()
     {
-        $featuredProjects = Project::where('is_featured', true)->latest()->take(2)->get();
-        $latestProjects = Project::where('is_featured', false)->whereNotNull('slug')->latest()->take(2)->get();
+        $featuredExperiences = Experience::where('is_featured', true)->latest()->take(2)->get();
+        $latestExperiences = Experience::where('is_featured', false)->whereNotNull('slug')->latest()->take(2)->get();
 
         $abouts = About::where('is_showcased', true)->latest()->get()->groupBy('category');
 
-        $stacks = Stack::where('is_showcased', true)->latest()->take(8)->get();
+        $skills = Skill::where('is_showcased', true)->latest()->take(8)->get();
 
         return view('home', [
-            'featuredProjects' => $featuredProjects,
-            'latestProjects' => $latestProjects,
+            'featuredExperiences' => $featuredExperiences,
+            'latestExperiences' => $latestExperiences,
             'abouts' => $abouts,
-            'stacks' => $stacks,
+            'skills' => $skills,
         ]);
     }
 
@@ -41,17 +42,20 @@ class PageController extends Controller
             'message' => 'required',
         ]);
 
-        Mail::to('anwarfaishal86@gmail.com')->send(new ContactFormMail($data));
+        $settings = Setting::pluck('value', 'key')->all();
+        $recipientEmail = $settings['contact_email'] ?? 'anwarfaishal86@gmail.com';
+
+        Mail::to($recipientEmail)->send(new ContactFormMail($data));
 
         return redirect()->route('contact')->with('success', 'Your message has been sent successfully!');
     }
 
     public function sitemap()
     {
-        $projects = Project::latest()->get();
+        $experiences = Experience::latest()->get();
 
         return response()->view('sitemap', [
-            'projects' => $projects,
+            'experiences' => $experiences,
         ])->header('Content-Type', 'text/xml');
     }
 }

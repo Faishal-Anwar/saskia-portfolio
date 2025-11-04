@@ -17,7 +17,7 @@ class AboutController extends Controller
      */
     public function index()
     {
-        $abouts = About::all()->groupBy('category');
+        $abouts = About::latest()->get()->groupBy('category');
         $categories = ['Academic Education', 'Experience', 'Non-Formal Education', 'Certifications'];
         return view('about', compact('abouts', 'categories'));
     }
@@ -38,7 +38,7 @@ class AboutController extends Controller
         $request->validate([
             'category' => 'required|in:Academic Education,Experience,Non-Formal Education,Certifications',
             'title' => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'nullable|string',
             'start_date' => 'required|date',
             'end_date' => 'nullable|date|after_or_equal:start_date',
         ]);
@@ -66,7 +66,7 @@ class AboutController extends Controller
     {
         // Not needed as form is on the index page, but can be used for populating the edit form
         $about_item = About::findOrFail($id);
-        $abouts = About::all()->groupBy('category');
+        $abouts = About::latest()->get()->groupBy('category');
         $categories = ['Academic Education', 'Experience', 'Non-Formal Education', 'Certifications'];
         return view('about', compact('about_item', 'abouts', 'categories'));
     }
@@ -79,7 +79,7 @@ class AboutController extends Controller
         $request->validate([
             'category' => 'required|in:Academic Education,Experience,Non-Formal Education,Certifications',
             'title' => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'nullable|string',
             'start_date' => 'required|date',
             'end_date' => 'nullable|date|after_or_equal:start_date',
         ]);

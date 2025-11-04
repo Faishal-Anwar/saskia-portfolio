@@ -38,7 +38,7 @@ class ContactFormMail extends Mailable
             replyTo: [
                 new Address($this->email, $this->name),
             ],
-            subject: 'New message from Portfolio Contact Form',
+            subject: "New message from Saskia Mariska's Portfolio",
         );
     }
 

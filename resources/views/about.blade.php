@@ -1,24 +1,25 @@
+
 @extends('layouts.app')
 
-@section('title', "About Me | Faishal Anwar's Portfolio")
+@section('title', "About Me | Saskia Mariska's Portfolio")
 
 @section('content')
 <section id="about" class="content-section space-y-12">
     <div data-aos="fade-up" class="space-y-6 pt-8">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            <h2 class="text-3xl font-bold text-primary">About Me</h2>
+            <h2 class="text-3xl font-bold text-primary">My Background</h2>
             <div class="flex items-center gap-4 flex-shrink-0">
                 <div class="flex items-center gap-2 text-primary px-3 py-1.5 rounded-full text-sm font-semibold">
                     <span class="relative flex h-2.5 w-2.5">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
                     </span>
-                    <span>Available for Project</span>
+                    <span>Ready to Provide Care</span>
                 </div>
-                <a href="{{ route('contact') }}" class="bg-slate-900 text-white px-5 py-2.5 rounded-xl font-semibold text-base hover:bg-slate-800 dark:bg-sky-600 dark:hover:bg-sky-700 transition-all duration-300 transform hover:scale-105">Contact Me</a>
+                <a href="{{ route('contact') }}" class="bg-sky-600 text-white px-5 py-2.5 rounded-xl font-semibold text-base hover:bg-sky-700 dark:bg-sky-600 dark:hover:bg-sky-700 transition-all duration-300 transform hover:scale-105">Contact Me</a>
             </div>
         </div>
-        <p class="text-lg leading-relaxed text-justify text-secondary">My journey has been shaped by a strong academic foundation, industry-recognized certifications, and hands-on experience with companies like Google and Adobe. I’m dedicated to designing solutions that blend creativity, functionality, and user-centric thinking.</p>
+        <p class="text-lg leading-relaxed text-justify text-secondary">My journey as a nurse has been built on a strong foundation of academic excellence and hands-on clinical experience. I am dedicated to providing patient-centered care that is both compassionate and effective, ensuring the best possible outcomes for my patients and their families.</p>
     </div>
 
     {{-- Success and Error Messages --}}
@@ -69,7 +70,7 @@
 
                 <div class="md:col-span-2">
                     <label for="description" class="block mb-2 text-sm font-medium text-secondary">Description</label>
-                    <textarea id="description" name="description" rows="4" class="form-input w-full px-4 py-2.5 rounded-lg text-base focus:ring-2 focus:border-transparent transition" required>{{ old('description', $about_item->description ?? '') }}</textarea>
+                    <textarea id="description" name="description" rows="4" class="form-input w-full px-4 py-2.5 rounded-lg text-base focus:ring-2 focus:border-transparent transition">{{ old('description', $about_item->description ?? '') }}</textarea>
                 </div>
 
                 <div>
@@ -107,7 +108,7 @@
             $lucideIcons = [
                 'Academic Education' => 'graduation-cap',
                 'Experience' => 'briefcase',
-                'Non-Formal Education' => 'book-open',
+                'Non-Formal Education' => 'book-plus',
                 'Certifications' => 'award',
             ];
             $greenCategories = ['Experience', 'Certifications'];
@@ -161,9 +162,9 @@
 
     <div data-aos="zoom-in" data-aos-delay="200" class="card p-10 rounded-2xl grid-background">
         <div class="text-center">
-            <h2 class="text-2xl font-semibold mb-4 max-w-md mx-auto text-primary">Do you have any project idea?</h2>
-            <a href="{{ route('contact') }}" class="mt-6 inline-block bg-slate-900 text-white px-8 py-3 rounded-xl font-semibold text-base hover:bg-slate-800 dark:bg-sky-600 dark:hover:bg-sky-700 transition-all duration-300 transform hover:scale-105">
-                Contact Me
+            <h2 class="text-2xl font-semibold mb-4 max-w-md mx-auto text-primary">Need compassionate nursing care?</h2>
+            <a href="{{ route('contact') }}" class="mt-6 inline-block bg-sky-600 text-white px-8 py-3 rounded-xl font-semibold text-base hover:bg-sky-700 dark:bg-sky-600 dark:hover:bg-sky-700 transition-all duration-300 transform hover:scale-105">
+                Contact Saskia
             </a>
         </div>
     </div>

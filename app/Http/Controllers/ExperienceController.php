@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Project;
-use App\Models\Stack;
+use App\Models\Experience;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Cloudinary\Cloudinary;
 
-class ProjectController extends Controller
+class ExperienceController extends Controller
 {
     public function __construct()
     {
@@ -18,20 +17,14 @@ class ProjectController extends Controller
 
     public function index()
     {
-        $projects = Project::latest()->paginate(10);
-        $stacks = collect(); // Default to an empty collection
+        $experiences = Experience::latest()->paginate(10);
 
-        if (auth()->check()) {
-            $stacks = Stack::all();
-        }
-
-        return view('projects', compact('projects', 'stacks'));
+        return view('experience', compact('experiences'));
     }
 
     public function create()
     {
-        $stacks = Stack::all();
-        return view('projects.create', compact('stacks'));
+        return view('experience.create');
     }
 
     public function store(Request $request)
@@ -39,11 +32,8 @@ class ProjectController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'category' => 'required|max:255',
-            'client' => 'required|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'overview' => 'required',
-            'link' => 'nullable|url',
-            'tech_stack' => 'nullable|string',
             'is_featured' => 'nullable|boolean',
         ]);
 
@@ -56,53 +46,45 @@ class ProjectController extends Controller
                 'api_secret' => env('CLOUDINARY_API_SECRET'),
             ],
         ]);
-        $uploadedFile = $cloudinary->uploadApi()->upload($request->file('image')->getRealPath(), ['folder' => 'projects']);
+        $uploadedFile = $cloudinary->uploadApi()->upload($request->file('image')->getRealPath(), ['folder' => 'experiences']);
         $data['image'] = $uploadedFile['secure_url'];
         $data['image_public_id'] = $uploadedFile['public_id'];
 
         $data['slug'] = \Illuminate\Support\Str::slug($request->title);
         $data['is_featured'] = $request->has('is_featured');
 
-        Project::create($data);
+        Experience::create($data);
 
-        return redirect()->route('projects.index')
-                        ->with('success','Project created successfully.');
+        return redirect()->route('experience.index')
+                        ->with('success','Experience created successfully.');
     }
 
-    public function show(Project $project)
+    public function show(Experience $experience)
     {
-        $otherProjects = Project::where('slug', '!=', $project->slug)->latest()->take(2)->get();
-        return view('project-detail', compact('project', 'otherProjects'));
+        $otherExperiences = Experience::where('slug', '!=', $experience->slug)->latest()->take(2)->get();
+        return view('experience-detail', compact('experience', 'otherExperiences'));
     }
 
-    public function edit(Project $project)
+    public function edit(Experience $experience)
     {
-        $stacks = Stack::all();
-        return view('projects.edit', compact('project', 'stacks'));
+        return view('experience.edit', compact('experience'));
     }
 
-    public function update(Request $request, Project $project)
+    public function update(Request $request, Experience $experience)
     {
         $request->validate([
             'title' => 'required|max:255',
             'category' => 'required|max:255',
-            'client' => 'required|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'overview' => 'required',
-            'link' => 'nullable|url',
-            'tech_stack' => 'nullable|string',
             'is_featured' => 'nullable|boolean',
-            'approach' => 'nullable|string',
-            'vision' => 'nullable|string',
-            'design' => 'nullable|string',
-            'conclusion' => 'nullable|string',
         ]);
 
         $data = $request->except('image');
         $data['is_featured'] = $request->has('is_featured');
 
         if ($request->hasFile('image')) {
-            if ($project->image_public_id) {
+            if ($experience->image_public_id) {
                 $cloudinary = new Cloudinary([
                     'cloud' => [
                         'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
@@ -110,7 +92,7 @@ class ProjectController extends Controller
                         'api_secret' => env('CLOUDINARY_API_SECRET'),
                     ],
                 ]);
-                $cloudinary->uploadApi()->destroy($project->image_public_id);
+                $cloudinary->uploadApi()->destroy($experience->image_public_id);
             }
             $cloudinary = new Cloudinary([
                 'cloud' => [
@@ -119,22 +101,22 @@ class ProjectController extends Controller
                     'api_secret' => env('CLOUDINARY_API_SECRET'),
                 ],
             ]);
-            $uploadedFile = $cloudinary->uploadApi()->upload($request->file('image')->getRealPath(), ['folder' => 'projects']);
+            $uploadedFile = $cloudinary->uploadApi()->upload($request->file('image')->getRealPath(), ['folder' => 'experiences']);
             $data['image'] = $uploadedFile['secure_url'];
             $data['image_public_id'] = $uploadedFile['public_id'];
         }
 
         $data['slug'] = \Illuminate\Support\Str::slug($request->title);
 
-        $project->update($data);
+        $experience->update($data);
 
-        return redirect()->route('projects.index')
-                        ->with('success','Project updated successfully');
+        return redirect()->route('experience.index')
+                        ->with('success','Experience updated successfully');
     }
 
-    public function destroy(Project $project)
+    public function destroy(Experience $experience)
     {
-        if ($project->image_public_id) {
+        if ($experience->image_public_id) {
             $cloudinary = new Cloudinary([
                 'cloud' => [
                     'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
@@ -142,13 +124,12 @@ class ProjectController extends Controller
                     'api_secret' => env('CLOUDINARY_API_SECRET'),
                 ],
             ]);
-            $cloudinary->uploadApi()->destroy($project->image_public_id);
+            $cloudinary->uploadApi()->destroy($experience->image_public_id);
         }
 
-        $project->stacks()->detach();
-        $project->delete();
+        $experience->delete();
 
-        return redirect()->route('projects.index')
-                        ->with('success','Project deleted successfully');
+        return redirect()->route('experience.index')
+                        ->with('success','Experience deleted successfully');
     }
 }

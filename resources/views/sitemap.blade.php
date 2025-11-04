@@ -13,7 +13,7 @@
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>{{ route('projects.index') }}</loc>
+        <loc>{{ route('experience.index') }}</loc>
         <lastmod>{{ now()->toAtomString() }}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
@@ -24,10 +24,10 @@
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-    @foreach ($projects as $project)
+    @foreach ($experiences as $experience)
         <url>
-            <loc>{{ route('projects.show', $project) }}</loc>
-            <lastmod>{{ $project->updated_at->toAtomString() }}</lastmod>
+            <loc>{{ route('experience.show', $experience) }}</loc>
+            <lastmod>{{ $experience->updated_at->toAtomString() }}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.9</priority>
         </url>

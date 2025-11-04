@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', "Faishal Anwar's Portfolio")</title>
+    <title>@yield('title', "Saskia Mariska's Portfolio")</title>
 
     <!-- SEO & Meta Tags -->
-    <meta name="description" content="Portfolio Faishal Anwar, seorang Machine Learning Engineer & Data Scientist yang berfokus pada solusi AI, analisis data, dan algoritma berbasis data untuk memecahkan masalah dunia nyata.">
-    <meta name="keywords" content="Faishal Anwar, Machine Learning Engineer, Data Scientist, AI, Portfolio, Web Developer, Laravel, Python">
-    <meta name="author" content="Faishal Anwar">
+    <meta name="description" content="Portfolio Saskia Mariska, seorang perawat profesional yang berdedikasi pada perawatan pasien, manajemen medis, dan pendidikan kesehatan.">
+    <meta name="keywords" content="Saskia Mariska, Perawat, Portfolio, Kesehatan, Medis">
+    <meta name="author" content="Saskia Mariska">
     <link rel="canonical" href="{{ url()->current() }}" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="Faishal Anwar's Portfolio">
-    <meta property="og:description" content="Portfolio Faishal Anwar, seorang Machine Learning Engineer & Data Scientist yang berfokus pada solusi AI, analisis data, dan algoritma berbasis data untuk memecahkan masalah dunia nyata.">
+    <meta property="og:title" content="Saskia Mariska's Portfolio">
+    <meta property="og:description" content="Portfolio Saskia Mariska, seorang perawat profesional yang berdedikasi pada perawatan pasien, manajemen medis, dan pendidikan kesehatan.">
     <meta property="og:image" content="{{ $siteSettings['profile_photo_url'] ?? asset('images/profile.png') }}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="Faishal Anwar's Portfolio">
-    <meta property="twitter:description" content="Portfolio Faishal Anwar, seorang Machine Learning Engineer & Data Scientist yang berfokus pada solusi AI, analisis data, dan algoritma berbasis data untuk memecahkan masalah dunia nyata.">
+    <meta property="twitter:title" content="Saskia Mariska's Portfolio">
+    <meta property="twitter:description" content="Portfolio Saskia Mariska, seorang perawat profesional yang berdedikasi pada perawatan pasien, manajemen medis, dan pendidikan kesehatan.">
     <meta property="twitter:image" content="{{ $siteSettings['profile_photo_url'] ?? asset('images/profile.png') }}">
 
 
-    <link rel="icon" href="https://placehold.co/32x32/0284c7/ffffff?text=FA" type="image/png">
+    <link rel="icon" href="https://placehold.co/32x32/0284c7/ffffff?text=SM" type="image/png">
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -258,16 +258,16 @@
             <a href="{{ route('settings.edit') }}" class="flex items-center gap-4 mb-6 group">
                 <img src="{{ $siteSettings['profile_photo_url'] ?? asset('images/profile.png') }}" alt="Profile Photo" class="w-12 h-12 rounded-full object-cover profile-logo group-hover:ring-2 group-hover:ring-blue-500 transition-all">
                 <div>
-                    <h1 class="font-bold text-xl text-primary">Faishal Anwar</h1>
-                    <p class="text-sm text-secondary">ML Engineer</p>
+                    <h1 class="font-bold text-lg text-primary">Saskia Mariska</h1>
+                    <p class="text-sm text-secondary">Nurse</p>
                 </div>
             </a>
             @else
             <div class="flex items-center gap-4 mb-6">
                 <img src="{{ $siteSettings['profile_photo_url'] ?? asset('images/profile.png') }}" alt="Profile Photo" class="w-12 h-12 rounded-full object-cover profile-logo">
                 <div>
-                    <h1 class="font-bold text-xl text-primary">Faishal Anwar</h1>
-                    <p class="text-sm text-secondary">ML Engineer</p>
+                    <h1 class="font-bold text-lg text-primary">Saskia Mariska</h1>
+                    <p class="text-sm text-secondary">Nurse</p>
                 </div>
             </div>
             @endauth
@@ -292,14 +292,15 @@
                     <i data-lucide="user-circle" class="w-5 h-5"></i>
                     <span>About Me</span>
                 </a>
-                <a href="{{ route('projects.index') }}" class="nav-link {{ request()->routeIs('projects.*') ? 'active' : '' }} flex items-center gap-3 px-4 py-2 rounded-xl text-base transition-colors duration-300">
+                <a href="{{ route('experience.index') }}" class="nav-link {{ request()->routeIs('experience.*') ? 'active' : '' }} flex items-center gap-3 px-4 py-2 rounded-xl text-base transition-colors duration-300">
                     <i data-lucide="folder-kanban" class="w-5 h-5"></i>
-                    <span>Projects</span>
+                    <span>Experience</span>
                 </a>
-                                <a href="{{ route('stack.index') }}" class="nav-link {{ request()->routeIs('stack.*') ? 'active' : '' }} flex items-center gap-3 px-4 py-2 rounded-xl text-base transition-colors duration-300">
-                                    <i data-lucide="layers" class="w-5 h-5"></i>
-                                    <span>Stack</span>
-                                </a>                <a href="{{ route('contact') }}" class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }} flex items-center gap-3 px-4 py-2 rounded-xl text-base transition-colors duration-300">
+                <a href="{{ route('skills.index') }}" class="nav-link {{ request()->routeIs('skills.*') ? 'active' : '' }} flex items-center gap-3 px-4 py-2 rounded-xl text-base transition-colors duration-300">
+                    <i data-lucide="layers" class="w-5 h-5"></i>
+                    <span>Skills</span>
+                </a>
+                <a href="{{ route('contact') }}" class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }} flex items-center gap-3 px-4 py-2 rounded-xl text-base transition-colors duration-300">
                     <i data-lucide="mail" class="w-5 h-5"></i>
                     <span>Contact</span>
                 </a>
@@ -318,10 +319,6 @@
             </nav>
 
             <div class="mt-auto flex flex-col gap-1">
-                <a href="{{ $siteSettings['github_url'] ?? '#' }}" target="_blank" class="social-link flex items-center gap-3 px-4 py-1.5 rounded-xl text-sm transition-colors duration-300">
-                    <i data-lucide="github" class="w-5 h-5"></i>
-                    <span>GitHub</span>
-                </a>
                 <a href="{{ $siteSettings['linkedin_url'] ?? '#' }}" target="_blank" class="social-link flex items-center gap-3 px-4 py-1.5 rounded-xl text-sm transition-colors duration-300">
                     <i data-lucide="linkedin" class="w-5 h-5"></i>
                     <span>LinkedIn</span>
@@ -329,6 +326,10 @@
                 <a href="{{ $siteSettings['instagram_url'] ?? '#' }}" target="_blank" class="social-link flex items-center gap-3 px-4 py-1.5 rounded-xl text-sm transition-colors duration-300">
                     <i data-lucide="instagram" class="w-5 h-5"></i>
                     <span>Instagram</span>
+                </a>
+                <a href="{{ $siteSettings['facebook_url'] ?? '#' }}" target="_blank" class="social-link flex items-center gap-3 px-4 py-1.5 rounded-xl text-sm transition-colors duration-300">
+                    <i data-lucide="facebook" class="w-5 h-5"></i>
+                    <span>Facebook</span>
                 </a>
             </div>
         </aside>
@@ -339,12 +340,12 @@
                     @auth
                     <a href="{{ route('settings.edit') }}" class="flex items-center gap-3 group">
                         <img src="{{ $siteSettings['profile_photo_url'] ?? asset('images/profile.png') }}" alt="Profile Photo" class="w-8 h-8 rounded-full object-cover profile-logo group-hover:ring-2 group-hover:ring-blue-500 transition-all">
-                        <h1 class="font-bold text-md text-primary">Faishal Anwar</h1>
+                        <h1 class="font-bold text-md text-primary">Saskia Mariska</h1>
                     </a>
                     @else
                     <div class="flex items-center gap-3">
                         <img src="{{ $siteSettings['profile_photo_url'] ?? asset('images/profile.png') }}" alt="Profile Photo" class="w-8 h-8 rounded-full object-cover profile-logo">
-                        <h1 class="font-bold text-md text-primary">Faishal Anwar</h1>
+                        <h1 class="font-bold text-md text-primary">Saskia Mariska</h1>
                     </div>
                     @endauth
                     <div class="flex items-center gap-2">
@@ -372,13 +373,13 @@
                          <i data-lucide="user-circle" class="w-7 h-7"></i>
                          <span>About Me</span>
                      </a>
-                     <a href="{{ route('projects.index') }}" class="nav-link-mobile {{ request()->routeIs('projects.*') ? 'active' : '' }} flex items-center gap-4 px-5 py-4 rounded-xl text-xl transition-colors">
+                     <a href="{{ route('experience.index') }}" class="nav-link-mobile {{ request()->routeIs('experience.*') ? 'active' : '' }} flex items-center gap-4 px-5 py-4 rounded-xl text-xl transition-colors">
                          <i data-lucide="folder-kanban" class="w-7 h-7"></i>
-                         <span>Projects</span>
+                         <span>Experience</span>
                      </a>
-                     <a href="{{ route('stack.index') }}" class="nav-link-mobile {{ request()->routeIs('stack.*') ? 'active' : '' }} flex items-center gap-4 px-5 py-4 rounded-xl text-xl transition-colors">
+                     <a href="{{ route('skills.index') }}" class="nav-link-mobile {{ request()->routeIs('skills.*') ? 'active' : '' }} flex items-center gap-4 px-5 py-4 rounded-xl text-xl transition-colors">
                          <i data-lucide="layers" class="w-7 h-7"></i>
-                         <span>Stack</span>
+                         <span>Skills</span>
                      </a>
                      <a href="{{ route('contact') }}" class="nav-link-mobile {{ request()->routeIs('contact') ? 'active' : '' }} flex items-center gap-4 px-5 py-4 rounded-xl text-xl transition-colors">
                          <i data-lucide="mail" class="w-7 h-7"></i>
@@ -404,7 +405,7 @@
             @yield('content')
 
             <footer class="mt-12 text-center text-sm text-slate-600 dark:text-slate-400 py-6">
-                <p>© 2025 by Faishal. All rights reserved.</p>
+                <p>© 2025 by Saskia Mariska. All rights reserved.</p>
             </footer>
         </main>
     </div>
@@ -476,7 +477,7 @@
             const emailTextEl = document.getElementById('email-text');
             
             if (copyEmailBtn && emailTextEl) {
-                const emailText = "anwarfaishal86@gmail.com";
+                const emailText = "saskia.mariska@example.com";
                 copyEmailBtn.addEventListener('click', () => {
                     const textarea = document.createElement('textarea');
                     textarea.value = emailText;
